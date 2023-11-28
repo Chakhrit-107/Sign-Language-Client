@@ -1,0 +1,74 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import configBackend from "../../../config/config.backend";
+import Character from "../../../models/character.model";
+import Vocabulary from "../../../models/vocabularies.model";
+import axios from "axios";
+
+function EducationViewModal() {
+  const {
+    PROTOCOL,
+    HOST,
+    PORT,
+    CHARACTER_SIGN_LANGUAGE,
+    VOCABULARIES,
+    USERINPUT,
+  } = configBackend;
+
+  const location = useLocation();
+
+  const vocabulary: string = location.state?.name;
+  const imgNormal: string = location.state?.imgNormal;
+  const imgSign: string = location.state?.imgSign;
+  const videoSign: string = location.state?.video;
+
+  const inputVocabulary: string = location.state?.userInput;
+
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [vocabularyInput, setVocabularyInput] = useState<Vocabulary>();
+
+  useEffect(() => {
+    const getCharacterByCategory = async () => {
+      try {
+        const response = await axios.get(
+          `${PROTOCOL}://${HOST}:${PORT}/${CHARACTER_SIGN_LANGUAGE}/${
+            inputVocabulary ? inputVocabulary : vocabulary
+          }`
+        );
+        const character = response.data;
+        setCharacters(character);
+      } catch (err) {
+        console.log("Error get character: ", err);
+      }
+    };
+
+    getCharacterByCategory();
+  }, []);
+
+  useEffect(() => {
+    const getVocabularyUser = async () => {
+      try {
+        const response = await axios.get(
+          `${PROTOCOL}://${HOST}:${PORT}/${VOCABULARIES}/${USERINPUT}/${inputVocabulary}`
+        );
+        const vocabularyFound = response.data[0];
+        setVocabularyInput(vocabularyFound);
+      } catch (err) {
+        console.log("Error get vocabulary: ", err);
+      }
+    };
+
+    getVocabularyUser();
+  }, []);
+
+  return {
+    vocabulary,
+    imgNormal,
+    imgSign,
+    videoSign,
+    characters,
+    vocabularyInput,
+  };
+}
+
+export default EducationViewModal;
