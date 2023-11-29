@@ -14,7 +14,7 @@ function DifferenceGameViewModel() {
   const location = useLocation();
   const category = location.state?.selectedCategory;
 
-  const { PROTOCOL, HOST, PORT, GAMES, DIFFERENCE } = configBackend;
+  const { API_URL, GAMES, DIFFERENCE } = configBackend;
 
   const [vSet1, setVSet1] = useState<Vocabulary[]>([]);
   const [vSet2, setVSet2] = useState<Vocabulary[]>([]);
@@ -29,7 +29,7 @@ function DifferenceGameViewModel() {
   useEffect(() => {
     const getVocabulariesDifferenceGame = async () => {
       const response = await axios.get(
-        `${PROTOCOL}://${HOST}:${PORT}/${GAMES}/${DIFFERENCE}/${category}`
+        `${API_URL}/${GAMES}/${DIFFERENCE}/${category}`
       );
 
       const vocabulariesSet = response.data;

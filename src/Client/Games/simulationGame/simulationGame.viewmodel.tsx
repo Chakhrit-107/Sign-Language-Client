@@ -11,7 +11,7 @@ interface Choice {
 }
 
 function SimulationGameViewModel() {
-  const { PROTOCOL, HOST, PORT, GAMES, SIMULATION } = configBackend;
+  const { API_URL, GAMES, SIMULATION } = configBackend;
 
   const [questions, setQuestions] = useState<SimulationQuiz[]>([]);
   const [answer, setAnswer] = useState<SimulationQuiz>();
@@ -27,9 +27,7 @@ function SimulationGameViewModel() {
   useEffect(() => {
     const getQuestionSimulationGame = async () => {
       try {
-        const response = await axios.get(
-          `${PROTOCOL}://${HOST}:${PORT}/${GAMES}/${SIMULATION}`
-        );
+        const response = await axios.get(`${API_URL}/${GAMES}/${SIMULATION}`);
         const quizzes = response.data;
 
         setQuestions(quizzes);

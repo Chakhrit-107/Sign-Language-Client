@@ -6,14 +6,8 @@ import Vocabulary from "../../../models/vocabularies.model";
 import axios from "axios";
 
 function EducationViewModal() {
-  const {
-    PROTOCOL,
-    HOST,
-    PORT,
-    CHARACTER_SIGN_LANGUAGE,
-    VOCABULARIES,
-    USERINPUT,
-  } = configBackend;
+  const { API_URL, CHARACTER_SIGN_LANGUAGE, VOCABULARIES, USERINPUT } =
+    configBackend;
 
   const location = useLocation();
 
@@ -31,7 +25,7 @@ function EducationViewModal() {
     const getCharacterByCategory = async () => {
       try {
         const response = await axios.get(
-          `${PROTOCOL}://${HOST}:${PORT}/${CHARACTER_SIGN_LANGUAGE}/${
+          `${API_URL}/${CHARACTER_SIGN_LANGUAGE}/${
             inputVocabulary ? inputVocabulary : vocabulary
           }`
         );
@@ -49,7 +43,7 @@ function EducationViewModal() {
     const getVocabularyUser = async () => {
       try {
         const response = await axios.get(
-          `${PROTOCOL}://${HOST}:${PORT}/${VOCABULARIES}/${USERINPUT}/${inputVocabulary}`
+          `${API_URL}/${VOCABULARIES}/${USERINPUT}/${inputVocabulary}`
         );
         const vocabularyFound = response.data[0];
         setVocabularyInput(vocabularyFound);

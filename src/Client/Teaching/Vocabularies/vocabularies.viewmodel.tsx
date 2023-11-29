@@ -11,8 +11,7 @@ function VocabulariesViewModel() {
   const categoryName: string = location.state?.category_name;
   const categoryImgSignLanguage: string = location.state?.category_img;
 
-  const { PROTOCOL, HOST, PORT, VOCABULARIES, AUTHENTICATION, VERIFY } =
-    configBackend;
+  const { API_URL, VOCABULARIES, AUTHENTICATION, VERIFY } = configBackend;
 
   const [authentication, setAuthentication] = useState<boolean>(false);
 
@@ -30,7 +29,7 @@ function VocabulariesViewModel() {
       try {
         if (accessToken) {
           const checkedToken = await axios.get(
-            `${PROTOCOL}://${HOST}:${PORT}/${AUTHENTICATION}/${VERIFY}/${accessToken}`
+            `${API_URL}/${AUTHENTICATION}/${VERIFY}/${accessToken}`
           );
 
           const auth = checkedToken.data;
@@ -50,7 +49,7 @@ function VocabulariesViewModel() {
       if (categoryName && categoryImgSignLanguage) {
         try {
           const response = await axios.get(
-            `${PROTOCOL}://${HOST}:${PORT}/${VOCABULARIES}/${categoryName}`
+            `${API_URL}/${VOCABULARIES}/${categoryName}`
           );
           const vocabularies = response.data;
           setVocabularies(vocabularies);
@@ -81,9 +80,7 @@ function VocabulariesViewModel() {
       });
 
       if (confirmDelete.isConfirmed) {
-        await axios.delete(
-          `${PROTOCOL}://${HOST}:${PORT}/${VOCABULARIES}/${tableName}/${id}`
-        );
+        await axios.delete(`${API_URL}/${VOCABULARIES}/${tableName}/${id}`);
 
         await Swal.fire({
           position: "center",

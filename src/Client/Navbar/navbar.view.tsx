@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 import SchoolIcon from "@mui/icons-material/School";
 
 function Navbar() {
-  const { PROTOCOL, HOST, PORT, AUTHENTICATION, VERIFY } = configBackend;
+  const { API_URL, AUTHENTICATION, VERIFY } = configBackend;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -29,7 +29,7 @@ function Navbar() {
       try {
         if (accessToken) {
           const checkedToken = await axios.get(
-            `${PROTOCOL}://${HOST}:${PORT}/${AUTHENTICATION}/${VERIFY}/${accessToken}`
+            `${API_URL}/${AUTHENTICATION}/${VERIFY}/${accessToken}`
           );
 
           const auth = checkedToken.data;

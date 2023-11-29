@@ -11,7 +11,7 @@ function SpellingGameViewModel() {
   const location = useLocation();
   const category: string = location.state?.selectedCategory;
 
-  const { PROTOCOL, HOST, PORT, GAMES, SPELLING } = configBackend;
+  const { API_URL, GAMES, SPELLING } = configBackend;
 
   // [0] => answer
   // [1] => random character
@@ -38,7 +38,7 @@ function SpellingGameViewModel() {
   useEffect(() => {
     const getSpellingVocabulary = async () => {
       const response = await axios.get(
-        `${PROTOCOL}://${HOST}:${PORT}/${GAMES}/${SPELLING}/${category}`
+        `${API_URL}/${GAMES}/${SPELLING}/${category}`
       );
 
       const vocabularies = response.data;
@@ -66,7 +66,7 @@ function SpellingGameViewModel() {
       );
 
       const imgURL = vRandom[0].map((vr) => vr.img_normal).toString();
-      const updateURL = `${PROTOCOL}://${HOST}:${PORT}/${imgURL}`;
+      const updateURL = `${API_URL}/${imgURL}`;
       setImgQuestion(updateURL);
     }
   }, [vRandom]);

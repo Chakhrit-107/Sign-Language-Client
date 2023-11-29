@@ -17,7 +17,7 @@ function QuizGameViewModel() {
   const location = useLocation();
   const category: string = location.state?.selectedCategory;
 
-  const { PROTOCOL, HOST, PORT, GAMES, QUIZ } = configBackend;
+  const { API_URL, GAMES, QUIZ } = configBackend;
 
   const [count, setCount] = useState<number>(0);
   const [questions, setQuestions] = useState<Question>();
@@ -40,7 +40,7 @@ function QuizGameViewModel() {
   useEffect(() => {
     const getQuestions = async () => {
       const response = await axios.get(
-        `${PROTOCOL}://${HOST}:${PORT}/${GAMES}/${QUIZ}/${category}`
+        `${API_URL}/${GAMES}/${QUIZ}/${category}`
       );
       const vocabularies = response.data;
 
@@ -50,8 +50,7 @@ function QuizGameViewModel() {
       const answer = vocabularies[vocabularies.length - 1]; // answer correct
 
       const imgSign = answer.map(
-        (vocabulary: any) =>
-          `${PROTOCOL}://${HOST}:${PORT}/${vocabulary.img_sign_language}` // update answer url img sign language
+        (vocabulary: any) => `${API_URL}/${vocabulary.img_sign_language}` // update answer url img sign language
       );
 
       const ansCor = answer.map((vocabulary: any) => vocabulary.name); // answer vocabulary correct

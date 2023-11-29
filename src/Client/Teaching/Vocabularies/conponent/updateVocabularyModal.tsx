@@ -26,7 +26,7 @@ function UpdateVocabularyModal({
   const [showImgSignLanguage, setShowImgSignLanguage] = useState<string>("");
   const [showVideo, setShowVideo] = useState<string>("");
 
-  const { PROTOCOL, HOST, PORT, VOCABULARIES } = configBackend;
+  const { API_URL, VOCABULARIES } = configBackend;
 
   const onChangeNewImgNormal = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -133,10 +133,7 @@ function UpdateVocabularyModal({
     try {
       const vocabularyChecked: boolean | undefined = await checkVocabulary();
       if (vocabularyChecked) {
-        await axios.put(
-          `${PROTOCOL}://${HOST}:${PORT}/${VOCABULARIES}/${id}`,
-          formData
-        );
+        await axios.put(`${API_URL}/${VOCABULARIES}/${id}`, formData);
         setNewVocabulary("");
         setNewImgNormal(null);
         setNewImgSignLanguage(null);

@@ -23,7 +23,7 @@ interface NameProp {
 type MatchingGameType = [ImagesProp[], NameProp[]];
 
 function MatchingGameViewModel() {
-  const { PROTOCOL, HOST, PORT, GAMES, MATCHING } = configBackend;
+  const { API_URL, GAMES, MATCHING } = configBackend;
   const location = useLocation();
   const category = location.state?.selectedCategory;
 
@@ -64,7 +64,7 @@ function MatchingGameViewModel() {
     const getVocabularies = async () => {
       try {
         const response = await axios.get(
-          `${PROTOCOL}://${HOST}:${PORT}/${GAMES}/${MATCHING}/${category}`
+          `${API_URL}/${GAMES}/${MATCHING}/${category}`
         );
         const vocabularies = response.data; // [0] => image , [1] => name
 
@@ -109,14 +109,11 @@ function MatchingGameViewModel() {
   useEffect(() => {
     const getLineConnectBlock = async () => {
       try {
-        const response = await axios.post(
-          `${PROTOCOL}://${HOST}:${PORT}/${GAMES}/${MATCHING}`,
-          {
-            screen: screen,
-            positionQuiz: positionQuiz,
-            positionAnswer: positionAnswer,
-          }
-        );
+        const response = await axios.post(`${API_URL}/${GAMES}/${MATCHING}`, {
+          screen: screen,
+          positionQuiz: positionQuiz,
+          positionAnswer: positionAnswer,
+        });
 
         const urlLine = response.data;
 

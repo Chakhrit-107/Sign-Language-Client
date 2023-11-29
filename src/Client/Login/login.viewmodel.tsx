@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import configBackend from "../../config/config.backend";
 
 function LoginViewModel() {
-  const { PROTOCOL, HOST, PORT, AUTHENTICATION, LOGIN } = configBackend;
+  const { API_URL, AUTHENTICATION, LOGIN } = configBackend;
 
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -15,7 +15,7 @@ function LoginViewModel() {
         const account = { username: userName, password: password };
 
         const response = await axios.post(
-          `${PROTOCOL}://${HOST}:${PORT}/${AUTHENTICATION}/${LOGIN}`,
+          `${API_URL}/${AUTHENTICATION}/${LOGIN}`,
           account
         );
 

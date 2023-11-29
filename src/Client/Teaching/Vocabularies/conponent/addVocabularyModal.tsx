@@ -19,7 +19,7 @@ function AddVocabularyModal({ categoryName, closeCreate }: AddVocabularyProp) {
   const [showImgSignLanguage, setShowImgSignLanguage] = useState<string>("");
   const [showVideo, setShowVideo] = useState<string>("");
 
-  const { PROTOCOL, HOST, PORT, VOCABULARIES } = configBackend;
+  const { API_URL, VOCABULARIES } = configBackend;
 
   const onChangeImgNormal = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -122,10 +122,7 @@ function AddVocabularyModal({ categoryName, closeCreate }: AddVocabularyProp) {
       const vocabularyChecked: boolean | undefined = await checkVocabulary();
 
       if (vocabularyChecked) {
-        await axios.post(
-          `${PROTOCOL}://${HOST}:${PORT}/${VOCABULARIES}`,
-          formData
-        );
+        await axios.post(`${API_URL}/${VOCABULARIES}`, formData);
         setVocabulary("");
         setImgNormal(null);
         setImgSignLanguage(null);

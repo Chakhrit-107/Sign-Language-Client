@@ -5,8 +5,7 @@ import Category from "../../models/categories.model";
 import Swal from "sweetalert2";
 
 function HomeViewModel() {
-  const { PROTOCOL, HOST, PORT, CATEGORIES, AUTHENTICATION, VERIFY } =
-    configBackend;
+  const { API_URL, CATEGORIES, AUTHENTICATION, VERIFY } = configBackend;
 
   const [authentication, setAuthentication] = useState<boolean>(false);
   const [inputUser, setInputUser] = useState<string>("");
@@ -25,7 +24,7 @@ function HomeViewModel() {
       try {
         if (accessToken) {
           const checkedToken = await axios.get(
-            `${PROTOCOL}://${HOST}:${PORT}/${AUTHENTICATION}/${VERIFY}/${accessToken}`
+            `${API_URL}/${AUTHENTICATION}/${VERIFY}/${accessToken}`
           );
 
           const auth = checkedToken.data;
@@ -42,9 +41,7 @@ function HomeViewModel() {
   useEffect(() => {
     const getAllCategories = async () => {
       try {
-        const categoriesRequest = await axios.get(
-          `${PROTOCOL}://${HOST}:${PORT}/${CATEGORIES}`
-        );
+        const categoriesRequest = await axios.get(`${API_URL}/${CATEGORIES}`);
         const categories = categoriesRequest.data;
         setCategories(categories);
       } catch (err) {
@@ -69,9 +66,7 @@ function HomeViewModel() {
       });
 
       if (confirmDelete.isConfirmed) {
-        await axios.delete(
-          `${PROTOCOL}://${HOST}:${PORT}/${CATEGORIES}/${category}/${id}`
-        );
+        await axios.delete(`${API_URL}/${CATEGORIES}/${category}/${id}`);
 
         await Swal.fire({
           position: "center",

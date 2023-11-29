@@ -16,7 +16,7 @@ function AddCategoryModal({ closeCreate }: AddCategoryProps) {
   const [showImgNormal, setShowImgNormal] = useState<string>("");
   const [showImgSignLanguage, setShowImgSignLanguage] = useState<string>("");
 
-  const { PROTOCOL, HOST, PORT, CATEGORIES } = configBackend;
+  const { API_URL, CATEGORIES } = configBackend;
 
   const onChangeImgNormal = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -94,10 +94,7 @@ function AddCategoryModal({ closeCreate }: AddCategoryProps) {
       const categoryChecked: boolean | undefined = await checkCategory();
 
       if (categoryChecked) {
-        await axios.post(
-          `${PROTOCOL}://${HOST}:${PORT}/${CATEGORIES}`,
-          formData
-        );
+        await axios.post(`${API_URL}/${CATEGORIES}`, formData);
         setCategory("");
         setImgNormal(null);
         setImgSignLanguage(null);

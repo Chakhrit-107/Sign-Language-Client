@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 function SelectGameCategoryViewModel() {
-  const { PROTOCOL, HOST, PORT, CATEGORIES, GAMES } = configBackend;
+  const { API_URL, CATEGORIES, GAMES } = configBackend;
 
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -35,7 +35,7 @@ function SelectGameCategoryViewModel() {
     const getAllCategories = async () => {
       try {
         const categoriesRequest = await axios.get(
-          `${PROTOCOL}://${HOST}:${PORT}/${CATEGORIES}/${GAMES}/${vMinimum}`
+          `${API_URL}/${CATEGORIES}/${GAMES}/${vMinimum}`
         );
         const response = categoriesRequest.data;
         setCategories(response);

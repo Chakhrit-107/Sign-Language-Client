@@ -19,7 +19,7 @@ function UpdataCategoriyModal({ id, closeUpdate }: UpdateCategoryProp) {
   const [showImgNormal, setShowImgNormal] = useState<string>("");
   const [showImgSignLanguage, setShowImgSignLanguage] = useState<string>("");
 
-  const { PROTOCOL, HOST, PORT, CATEGORIES } = configBackend;
+  const { API_URL, CATEGORIES } = configBackend;
 
   const onChangeNewImgNormal = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -102,10 +102,7 @@ function UpdataCategoriyModal({ id, closeUpdate }: UpdateCategoryProp) {
       const categoryChecked: boolean | undefined = await checkCategory();
 
       if (categoryChecked) {
-        await axios.put(
-          `${PROTOCOL}://${HOST}:${PORT}/${CATEGORIES}/${id}`,
-          formData
-        );
+        await axios.put(`${API_URL}/${CATEGORIES}/${id}`, formData);
         setNewCategory("");
         setNewImgNormal(null);
         setNewImgSignLanguage(null);
