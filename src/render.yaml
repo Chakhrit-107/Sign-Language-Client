@@ -1,0 +1,4 @@
+redirects:
+  - source: "/characters"
+    destination: "/characters"
+    action: "rewrite"
