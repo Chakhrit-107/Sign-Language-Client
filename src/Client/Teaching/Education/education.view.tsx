@@ -180,8 +180,8 @@ function Education() {
         </div>
       ) : (
         <div className="flex flex-col h-[500px] items-center justify-center space-y-5">
-          <h1 className="text-gray-600">กำลังค้นหาคำศัพท์</h1>
           <Oval stroke="blue" strokeOpacity={0.5} speed={1} strokeWidth={5} />
+          <h1 className="text-gray-600">กำลังค้นหาคำศัพท์</h1>
         </div>
       )}
     </>
