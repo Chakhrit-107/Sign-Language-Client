@@ -20,6 +20,7 @@ function EducationViewModal() {
 
   const [characters, setCharacters] = useState<Character[]>([]);
   const [vocabularyInput, setVocabularyInput] = useState<Vocabulary>();
+  const [foundVocabulary, setFoundVocabulary] = useState<boolean>(true);
 
   useEffect(() => {
     const getCharacterByCategory = async () => {
@@ -45,8 +46,13 @@ function EducationViewModal() {
         const response = await axios.get(
           `${API_URL}/${VOCABULARIES}/${USERINPUT}/${inputVocabulary}`
         );
-        const vocabularyFound = response.data[0];
-        setVocabularyInput(vocabularyFound);
+
+        if (response.data.length === 0) {
+          setFoundVocabulary(false);
+        } else {
+          const vocabularyFound = response.data[0];
+          setVocabularyInput(vocabularyFound);
+        }
       } catch (err) {
         console.log("Error get vocabulary: ", err);
       }
@@ -62,6 +68,7 @@ function EducationViewModal() {
     videoSign,
     characters,
     vocabularyInput,
+    foundVocabulary,
   };
 }
 

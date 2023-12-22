@@ -11,6 +11,7 @@ function Education() {
     videoSign,
     characters,
     vocabularyInput,
+    foundVocabulary,
   } = EducationViewModal();
 
   return (
@@ -167,7 +168,7 @@ function Education() {
           </div>
           <div className="w-full h-10"></div>
         </div>
-      ) : (
+      ) : foundVocabulary === false ? (
         <div className="flex flex-col h-[500px] items-center justify-center space-y-5">
           <h1 className="text-gray-600">ไม่พบข้อมูล</h1>
           <Link to="/">
@@ -175,6 +176,10 @@ function Education() {
               กลับ
             </button>
           </Link>
+        </div>
+      ) : (
+        <div className="flex flex-col h-[500px] items-center justify-center space-y-5">
+          <h1 className="text-gray-600">กำลังค้นหาคำศัพท์</h1>
         </div>
       )}
     </>
