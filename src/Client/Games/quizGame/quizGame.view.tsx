@@ -7,7 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 function QuizGame() {
   const {
     count,
-    imgSign,
+    imgNormal,
     questions,
     onChangeQuestion,
     showScore,
@@ -31,7 +31,7 @@ function QuizGame() {
         </div>
         <div className="flex justify-center">
           <img
-            src={imgSign?.[count]}
+            src={imgNormal?.[count]}
             className="w-60 md:w-96 rounded-full md:rounded-3xl border-2 border-gray-300 shadow-md"
           />
         </div>
@@ -61,7 +61,7 @@ function QuizGame() {
         </div>
         <div className="grid grid-cols-3 p-28">
           <img
-            src={imgSign?.[count]}
+            src={imgNormal?.[count]}
             className="w-full h-auto rounded-full md:rounded-3xl border-2 border-gray-300 shadow-2xl"
           />
           <div className="col-span-2 space-y-6 md:space-y-12 px-10 md:px-40">

@@ -22,7 +22,7 @@ function QuizGameViewModel() {
   const [count, setCount] = useState<number>(0);
   const [questions, setQuestions] = useState<Question>();
 
-  const [imgSign, setImgSign] = useState<string[]>([]);
+  const [imgNormal, setImgNormal] = useState<string[]>([]);
   const [ansUser, setAnsUser] = useState<string[]>([]);
   const [ansCorrect, setAnsCorrect] = useState<string[]>([]);
 
@@ -49,13 +49,13 @@ function QuizGameViewModel() {
 
       const answer = vocabularies[vocabularies.length - 1]; // answer correct
 
-      const imgSign = answer.map(
-        (vocabulary: any) => `${API_URL}/${vocabulary.img_sign_language}` // update answer url img sign language
+      const imgNormal = answer.map(
+        (vocabulary: any) => `${API_URL}/${vocabulary.img_normal}` // update answer url img normal
       );
 
       const ansCor = answer.map((vocabulary: any) => vocabulary.name); // answer vocabulary correct
 
-      setImgSign(imgSign);
+      setImgNormal(imgNormal);
       setAnsCorrect(ansCor);
     };
 
@@ -78,7 +78,7 @@ function QuizGameViewModel() {
   };
 
   const checkAnswerScore = () => {
-    const updatedSummary = imgSign.map((url, index) => ({
+    const updatedSummary = imgNormal.map((url, index) => ({
       img: url,
       correctAns: ansCorrect[index],
       userAns: ansUser[index],
@@ -97,7 +97,7 @@ function QuizGameViewModel() {
 
   return {
     count,
-    imgSign,
+    imgNormal,
     questions,
     onChangeQuestion,
     showScore,
