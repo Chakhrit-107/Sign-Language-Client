@@ -138,7 +138,7 @@ function Education() {
                     <h1 className="text-2xl text-gray-600">วิดีโอท่าภาษามือ</h1>
                     <div className="w-full h-auto">
                       <video
-                        autoPlay
+                        controls
                         muted={true}
                         loop
                         className="w-[100%] border-[2px] border-gray-400 shadow-xl rounded-3xl"
