@@ -50,7 +50,7 @@ function Education() {
             </div>
             <div className="w-1/2 xl:w-1/4 h-auto">
               <video
-                autoPlay
+                controls
                 muted={true}
                 loop
                 className="w-[100%] h-[100%] shadow-2xl rounded-3xl border-[2px] border-gray-400"
