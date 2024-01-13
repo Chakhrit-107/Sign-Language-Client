@@ -16,6 +16,9 @@ function EducationViewModal() {
   const imgSign: string = location.state?.imgSign;
   const videoSign: string = location.state?.video;
 
+  const categoryName: string = location.state?.category;
+  const categoryImgSign: string = location.state?.imgCategory;
+
   const inputVocabulary: string = location.state?.userInput;
 
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -69,6 +72,8 @@ function EducationViewModal() {
     characters,
     vocabularyInput,
     foundVocabulary,
+    categoryName,
+    categoryImgSign,
   };
 }
 

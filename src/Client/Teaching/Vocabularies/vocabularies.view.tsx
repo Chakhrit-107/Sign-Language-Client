@@ -8,6 +8,7 @@ import { Modal } from "react-bootstrap";
 import CloseIcon from "@mui/icons-material/Close";
 import AddVocabularyModal from "./conponent/addVocabularyModal";
 import UpdateVocabularyModal from "./conponent/updateVocabularyModal";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 function Vocabularies() {
   const {
@@ -33,6 +34,12 @@ function Vocabularies() {
           <h1 className="mt-6 text-xl font-bold text-gray-50 md:text-2xl lg:text-3xl">
             หมวดหมู่ : {categoryName && categoryName.replace(/_/g, "-")}
           </h1>
+          <Link to={"/"}>
+            <KeyboardBackspaceIcon
+              className="absolute left-4 top-28 cursor-pointer"
+              style={{ fontSize: "2rem", fill: "white" }}
+            />
+          </Link>
           <div className="flex items-center justify-center bg-gray-300 border-[2px] border-gray-400 shadow-2xl rounded-3xl w-60 md:w-80 lg:w-96 h-auto">
             <img src={categoryImgSignLanguage} className="w-full rounded-3xl" />
           </div>
@@ -67,6 +74,8 @@ function Vocabularies() {
                       imgNormal: vocabulary.img_normal,
                       video: vocabulary.video,
                       imgSign: vocabulary.img_sign_language,
+                      category: categoryName,
+                      imgCategory: categoryImgSignLanguage,
                     }}
                     className="flex flex-col w-full items-center no-underline text-gray-600"
                   >

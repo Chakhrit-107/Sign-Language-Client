@@ -3,6 +3,8 @@ import EducationViewModal from "./education.viewmodel";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Oval } from "react-loading-icons";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { dividerClasses } from "@mui/material";
 
 function Education() {
   const {
@@ -13,6 +15,8 @@ function Education() {
     characters,
     vocabularyInput,
     foundVocabulary,
+    categoryName,
+    categoryImgSign,
   } = EducationViewModal();
 
   return (
@@ -25,6 +29,20 @@ function Education() {
               <h1 className="text-gray-600 text-[35px] md:text-[45px]">
                 {vocabularyInput ? vocabularyInput.name : vocabulary}
               </h1>
+              {vocabulary ? (
+                <Link
+                  to={"/vocabularies"}
+                  state={{
+                    category_name: categoryName,
+                    category_img: categoryImgSign,
+                  }}
+                >
+                  <KeyboardBackspaceIcon
+                    className="absolute left-4 top-28 cursor-pointer"
+                    style={{ fontSize: "2rem", fill: "gray" }}
+                  />
+                </Link>
+              ) : null}
               <img
                 src={vocabularyInput ? vocabularyInput.img_normal : imgNormal}
                 className="w-52 h-auto md:w-[450px] rounded-3xl border-[2px] border-gray-400 shadow-2xl"
