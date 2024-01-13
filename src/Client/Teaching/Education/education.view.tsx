@@ -112,6 +112,20 @@ function Education() {
             <h1 className="text-gray-600 text-[35px] md:text-[45px]">
               {vocabularyInput ? vocabularyInput.name : vocabulary}
             </h1>
+            {vocabulary ? (
+              <Link
+                to={"/vocabularies"}
+                state={{
+                  category_name: categoryName,
+                  category_img: categoryImgSign,
+                }}
+              >
+                <KeyboardBackspaceIcon
+                  className="absolute left-4 top-28 cursor-pointer"
+                  style={{ fontSize: "2rem", fill: "gray" }}
+                />
+              </Link>
+            ) : null}
             <div className="w-[70%] flex space-x-24">
               <div className="w-[40%] h-auto flex">
                 <img
