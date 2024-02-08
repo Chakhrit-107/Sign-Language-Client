@@ -26,12 +26,11 @@ function Home() {
     updateName,
     inputUser,
     setInputUser,
-    isLoading,
   } = HomeViewModel();
 
   return (
     <>
-      {isLoading === true ? (
+      {categories === undefined ? (
         <div className="flex flex-col md:space-y-10 items-center justify-center h-screen bg-white">
           <Oval
             stroke="blue"
@@ -85,7 +84,7 @@ function Home() {
                 </div>
               ) : null}
               {/* Categories menu */}
-              {categories.map((category, index) => {
+              {categories?.map((category, index) => {
                 return (
                   <div
                     key={index}

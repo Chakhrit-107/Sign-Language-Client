@@ -12,11 +12,11 @@ function HomeViewModel() {
 
   const [showCreate, setShowCreate] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<Category[] | undefined>(
+    undefined
+  );
   const [updateID, setUpdateID] = useState<number>();
   const [updateName, setUpdateName] = useState<string>("");
-
-  const [isLoading, setIsLoading] = useState(true);
 
   const accessToken = sessionStorage.getItem("accessToken");
 
@@ -53,11 +53,6 @@ function HomeViewModel() {
 
     getAllCategories();
   }, []);
-
-  // Check status loading categories
-  useEffect(() => {
-    setIsLoading(false);
-  }, [categories]);
 
   const handleDeleteCategory = async (id: number, category: string) => {
     try {
@@ -111,7 +106,6 @@ function HomeViewModel() {
     updateName,
     inputUser,
     setInputUser,
-    isLoading,
   };
 }
 
