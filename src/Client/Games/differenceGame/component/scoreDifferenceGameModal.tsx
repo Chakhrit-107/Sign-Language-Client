@@ -2,6 +2,8 @@ import React from "react";
 import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
 import { Button } from "react-bootstrap";
 import SummaryScore from "../../../../models/summaryScore.model";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
 
 interface SummaryProp {
   summaries: SummaryScore[];
@@ -36,13 +38,25 @@ function ScoreDifferenceGameModal({ summaries }: SummaryProp) {
             <MDBTableHead>
               <tr className="flex">
                 <th className="w-[35%] flex justify-center border-r-2">
-                  รูปที่ต่างกัน
+                  <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-600">
+                    รูปที่ต่างกัน
+                  </h1>
                 </th>
-                <th className="w-[24%] flex justify-center border-r-2">เฉลย</th>
                 <th className="w-[24%] flex justify-center border-r-2">
-                  คำตอบของคุณ
+                  <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-600">
+                    เฉลย
+                  </h1>
                 </th>
-                <th className="w-[17%] flex justify-center">สถานะ</th>
+                <th className="w-[24%] flex justify-center border-r-2">
+                  <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-600">
+                    คำตอบของคุณ
+                  </h1>
+                </th>
+                <th className="w-[17%] flex justify-center">
+                  <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-600">
+                    สถานะ
+                  </h1>
+                </th>
               </tr>
             </MDBTableHead>
             <MDBTableBody>
@@ -56,13 +70,25 @@ function ScoreDifferenceGameModal({ summaries }: SummaryProp) {
                       />
                     </td>
                     <td className="w-[24%] flex items-center justify-center border-r-2">
-                      {summary.correctAns}
+                      <h1 className="text-lg md:text-2xl lg:text-3xl text-gray-600">
+                        {summary.correctAns}
+                      </h1>
                     </td>
                     <td className="w-[24%] flex items-center justify-center border-r-2">
-                      {summary.userAns}
+                      <h1 className="text-lg md:text-2xl lg:text-3xl text-gray-600">
+                        {summary.userAns}
+                      </h1>
                     </td>
                     <td className="w-[17%] flex items-center justify-center">
-                      {summary.status}
+                      {summary.status === "ถูก" ? (
+                        <div className="p-2 border-3 border-green-700 rounded-full bg-green-500">
+                          <CheckIcon className="text-white" />
+                        </div>
+                      ) : (
+                        <div className="p-2 border-3 border-red-700 rounded-full bg-red-500">
+                          <ClearIcon className="text-white" />
+                        </div>
+                      )}
                     </td>
                   </tr>
                 ))}

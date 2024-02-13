@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
 import Summary from "../schema/summary.schema";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
 
 interface ScoreSimulationGameProp {
   summary: Summary | undefined;
@@ -29,7 +31,7 @@ function ScoreSimulationGameModel({ summary }: ScoreSimulationGameProp) {
               className="w-[80%] h-auto"
               src={summary?.video}
             />
-            <span className="text-gray-600 text-sm md:text-lg">
+            <span className="text-gray-700 text-sm md:text-lg">
               คำอธิบาย: {summary?.description}
             </span>
           </div>
@@ -38,13 +40,19 @@ function ScoreSimulationGameModel({ summary }: ScoreSimulationGameProp) {
               <MDBTableHead>
                 <tr className="flex justify-between">
                   <th className="w-[40%] flex justify-center border-r-2 text-sm md:text-lg">
-                    คำตอบของคุณ
+                    <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-600">
+                      คำตอบของคุณ
+                    </h1>
                   </th>
                   <th className="w-[30%] flex justify-center border-r-2 text-sm md:text-lg">
-                    เฉลย
+                    <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-600">
+                      เฉลย
+                    </h1>
                   </th>
                   <th className="w-[30%] flex justify-center text-sm md:text-lg">
-                    สถานะ
+                    <h1 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-600">
+                      สถานะ
+                    </h1>
                   </th>
                 </tr>
               </MDBTableHead>
@@ -53,24 +61,48 @@ function ScoreSimulationGameModel({ summary }: ScoreSimulationGameProp) {
                   <>
                     <tr className="flex justify-between">
                       <td className="w-[40%] flex justify-center border-r-2 text-sm md:text-lg">
-                        {summary.select_A}
+                        <h1 className="text-lg md:text-2xl lg:text-3xl text-gray-600">
+                          {summary.select_A}
+                        </h1>
                       </td>
                       <td className="w-[30%] flex justify-center border-r-2 text-sm md:text-lg">
-                        {summary.answer_A}
+                        <h1 className="text-lg md:text-2xl lg:text-3xl text-gray-600">
+                          {summary.answer_A}
+                        </h1>
                       </td>
                       <td className="w-[30%] flex justify-center text-sm md:text-lg">
-                        {summary.status_A}
+                        {summary.status_A === "ถูก" ? (
+                          <div className="p-2 border-3 border-green-700 rounded-full bg-green-500">
+                            <CheckIcon className="text-white" />
+                          </div>
+                        ) : (
+                          <div className="p-2 border-3 border-red-700 rounded-full bg-red-500">
+                            <ClearIcon className="text-white" />
+                          </div>
+                        )}
                       </td>
                     </tr>
                     <tr className="flex justify-between">
                       <td className="w-[40%] flex justify-center border-r-2 text-sm md:text-lg">
-                        {summary.select_B}
+                        <h1 className="text-lg md:text-2xl lg:text-3xl text-gray-600">
+                          {summary.select_B}
+                        </h1>
                       </td>
                       <td className="w-[30%] flex justify-center border-r-2 text-sm md:text-lg">
-                        {summary.answer_B}
+                        <h1 className="text-lg md:text-2xl lg:text-3xl text-gray-600">
+                          {summary.answer_B}
+                        </h1>
                       </td>
                       <td className="w-[30%] flex justify-center text-sm md:text-lg">
-                        {summary.status_B}
+                        {summary.status_B === "ถูก" ? (
+                          <div className="p-2 border-3 border-green-700 rounded-full bg-green-500">
+                            <CheckIcon className="text-white" />
+                          </div>
+                        ) : (
+                          <div className="p-2 border-3 border-red-700 rounded-full bg-red-500">
+                            <ClearIcon className="text-white" />
+                          </div>
+                        )}
                       </td>
                     </tr>
                   </>
