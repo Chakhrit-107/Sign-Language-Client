@@ -7,7 +7,9 @@ import axios from "axios";
 function SelectGameCategoryViewModel() {
   const { API_URL, CATEGORIES, GAMES } = configBackend;
 
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<Category[] | undefined>(
+    undefined
+  );
 
   const location = useLocation();
   const gameName: string = location.state?.gameName;
