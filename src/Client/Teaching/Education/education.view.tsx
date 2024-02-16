@@ -211,9 +211,17 @@ function Education() {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col h-[500px] items-center justify-center space-y-5">
-          <Oval stroke="blue" strokeOpacity={0.5} speed={1} strokeWidth={5} />
-          <h1 className="text-gray-600">กำลังค้นหาคำศัพท์</h1>
+        <div className="flex flex-col md:space-y-10 items-center justify-center h-screen bg-white">
+          <Oval
+            stroke="blue"
+            strokeOpacity={0.5}
+            speed={1}
+            strokeWidth={5}
+            className="w-1/6 h-1/6"
+          />
+          <h1 className="text-gray-600 text-xl md:text-3xl">
+            กำลังค้นหาคำศัพท์
+          </h1>
         </div>
       )}
     </>
