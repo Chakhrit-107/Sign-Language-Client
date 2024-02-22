@@ -1,7 +1,9 @@
-const api_url = "http://localhost:8800";
+const api_url = "https://sign-language-server.onrender.com";
+const api_urlX = "http://localhost:8800";
+
 
 export default {
-  API_URL: process.env.xESL_config_server || api_url,
+  API_URL: api_url,
   AUTHENTICATION: "authentication",
   LOGIN: "login",
   REGISTER: "register",
