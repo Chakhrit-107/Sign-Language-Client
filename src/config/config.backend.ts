@@ -3,7 +3,7 @@ const api_urlX = "http://3.26.37.224:8800";
 
 
 export default {
-  API_URL: api_urlX,
+  API_URL: api_url,
   AUTHENTICATION: "authentication",
   LOGIN: "login",
   REGISTER: "register",
