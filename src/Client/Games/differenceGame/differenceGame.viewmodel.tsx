@@ -16,8 +16,8 @@ function DifferenceGameViewModel() {
 
   const { API_URL, GAMES, DIFFERENCE } = configBackend;
 
-  const [vSet1, setVSet1] = useState<Vocabulary[]>([]);
-  const [vSet2, setVSet2] = useState<Vocabulary[]>([]);
+  const [vSet1, setVSet1] = useState<Vocabulary[] | undefined>(undefined);
+  const [vSet2, setVSet2] = useState<Vocabulary[] | undefined>(undefined);
   const [answersCorrect, setAnswersCorrect] = useState<Vocabulary[]>([]);
 
   const [statusBtn, setStatusBtn] = useState<boolean[]>([]);

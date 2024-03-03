@@ -1,10 +1,8 @@
 import React from "react";
 import EducationViewModal from "./education.viewmodel";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import { Oval } from "react-loading-icons";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import { dividerClasses } from "@mui/material";
+import Loading from "../../../components/loading";
 
 function Education() {
   const {
@@ -211,18 +209,7 @@ function Education() {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col md:space-y-10 items-center justify-center h-screen bg-white">
-          <Oval
-            stroke="blue"
-            strokeOpacity={0.5}
-            speed={1}
-            strokeWidth={5}
-            className="w-1/6 h-1/6"
-          />
-          <h1 className="text-gray-600 text-xl md:text-3xl">
-            กำลังค้นหาคำศัพท์
-          </h1>
-        </div>
+        <Loading massage="กำลังค้นหาคำศัพท์" />
       )}
     </>
   );

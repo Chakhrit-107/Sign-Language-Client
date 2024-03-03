@@ -19,7 +19,7 @@ function SpellingGameViewModel() {
 
   const [vRandom, setVRandom] = useState<Vocabularies>();
   const [svCorrect, setSVCorrect] = useState<string[]>([]);
-  const [imgQuestion, setImgQuestion] = useState<string>();
+  const [imgQuestion, setImgQuestion] = useState<string | undefined>(undefined);
   const [svQuestion, setSVQuestion] = useState<string[]>([]);
 
   const [userSelect, setUserSelect] = useState<string[]>([]);

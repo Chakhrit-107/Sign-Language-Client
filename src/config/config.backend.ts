@@ -1,9 +1,8 @@
 const api_url = "https://sign-language-server.onrender.com";
-const api_urlX = "http://3.26.37.224:8800";
-
+const api_urlX = "http://13.211.176.140:8080";
 
 export default {
-  API_URL: api_url,
+  API_URL: api_urlX,
   AUTHENTICATION: "authentication",
   LOGIN: "login",
   REGISTER: "register",

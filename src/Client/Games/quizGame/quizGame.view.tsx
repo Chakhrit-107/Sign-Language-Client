@@ -3,6 +3,7 @@ import QuizGameViewModel from "./quizGame.viewmodel";
 import { Modal } from "react-bootstrap";
 import ScoreQuizGameModal from "./component/scoreQuizGameModal";
 import CloseIcon from "@mui/icons-material/Close";
+import Loading from "../../../components/loading";
 
 function QuizGame() {
   const {
@@ -19,65 +20,71 @@ function QuizGame() {
 
   return (
     <>
-      {/* Mobile and ipad */}
-      <div className="lg:hidden w-full flex flex-col p-6 gap-y-8 md:gap-y-24">
-        <div className="flex w-full justify-between">
-          <h1 className="text-2xl md:text-4xl text-gray-600">
-            เลือกให้ถูกต้อง
-          </h1>
-          <h1 className="text-2xl md:text-4xl text-gray-600">
-            {count + 1} / 5
-          </h1>
-        </div>
-        <div className="flex justify-center">
-          <img
-            src={imgNormal?.[count]}
-            className="w-60 md:w-96 rounded-full md:rounded-3xl border-2 border-gray-300 shadow-md"
-          />
-        </div>
-        <div className="space-y-6 md:space-y-12 px-10 md:px-40">
-          {questions?.[count].map((question, index) => (
-            <button
-              key={index}
-              type="button"
-              onClick={() => onChangeQuestion(question.name)}
-              className={styleBtnAns}
-            >
-              {question.name}
-            </button>
-          ))}
-        </div>
-      </div>
+      {questions === undefined ? (
+        <Loading massage="กำลังโหลดข้อมูล" />
+      ) : (
+        <>
+          {/* Mobile and ipad */}
+          <div className="lg:hidden w-full flex flex-col p-6 gap-y-8 md:gap-y-24">
+            <div className="flex w-full justify-between">
+              <h1 className="text-2xl md:text-4xl text-gray-600">
+                เลือกให้ถูกต้อง
+              </h1>
+              <h1 className="text-2xl md:text-4xl text-gray-600">
+                {count + 1} / 5
+              </h1>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={imgNormal?.[count]}
+                className="w-60 md:w-96 rounded-full md:rounded-3xl border-2 border-gray-300 shadow-md"
+              />
+            </div>
+            <div className="space-y-6 md:space-y-12 px-10 md:px-40">
+              {questions?.[count].map((question, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => onChangeQuestion(question.name)}
+                  className={styleBtnAns}
+                >
+                  {question.name}
+                </button>
+              ))}
+            </div>
+          </div>
 
-      {/* Computer */}
-      <div className="hidden lg:flex flex-col p-10">
-        <div className="flex w-full justify-between">
-          <h1 className="text-2xl md:text-4xl text-gray-600">
-            เลือกให้ถูกต้อง
-          </h1>
-          <div className="md:space-x-1">
-            <h1 className="text-5xl text-gray-600">{count + 1} / 5</h1>
+          {/* Computer */}
+          <div className="hidden lg:flex flex-col p-10">
+            <div className="flex w-full justify-between">
+              <h1 className="text-2xl md:text-4xl text-gray-600">
+                เลือกให้ถูกต้อง
+              </h1>
+              <div className="md:space-x-1">
+                <h1 className="text-5xl text-gray-600">{count + 1} / 5</h1>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 p-28">
+              <img
+                src={imgNormal?.[count]}
+                className="w-full h-auto rounded-full md:rounded-3xl border-2 border-gray-300 shadow-2xl"
+              />
+              <div className="col-span-2 space-y-6 md:space-y-12 px-10 md:px-40">
+                {questions?.[count].map((question, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => onChangeQuestion(question.name)}
+                    className={styleBtnAns}
+                  >
+                    {question.name}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-3 p-28">
-          <img
-            src={imgNormal?.[count]}
-            className="w-full h-auto rounded-full md:rounded-3xl border-2 border-gray-300 shadow-2xl"
-          />
-          <div className="col-span-2 space-y-6 md:space-y-12 px-10 md:px-40">
-            {questions?.[count].map((question, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => onChangeQuestion(question.name)}
-                className={styleBtnAns}
-              >
-                {question.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+        </>
+      )}
 
       {showScore && (
         <Modal show={true} onHide={handleHiddenModal} className="modal-xl">

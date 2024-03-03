@@ -50,7 +50,9 @@ function MatchingGameViewModel() {
   const [line, setLine] = useState<string>("");
 
   const [vocabularies, setVocabularies] = useState<MatchingGameType>();
-  const [imagesQuiz, setImagesQuiz] = useState<ImagesProp[]>([]);
+  const [imagesQuiz, setImagesQuiz] = useState<ImagesProp[] | undefined>(
+    undefined
+  );
   const [vAnswer, setVAnswer] = useState<NameProp[]>([]);
 
   const [ansCorrect, setAnsCorrect] = useState<string[]>([]);

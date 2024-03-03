@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import UpdateCategoryModal from "./components/updateCategoryModal";
-import { Oval } from "react-loading-icons";
+import Loading from "../../components/loading";
 
 function Home() {
   const {
@@ -31,16 +31,7 @@ function Home() {
   return (
     <>
       {categories === undefined ? (
-        <div className="flex flex-col md:space-y-10 items-center justify-center h-screen bg-white">
-          <Oval
-            stroke="blue"
-            strokeOpacity={0.5}
-            speed={1}
-            strokeWidth={5}
-            className="w-1/6 h-1/6"
-          />
-          <h1 className="text-gray-600 text-xl md:text-3xl">กำลังโหลดข้อมูล</h1>
-        </div>
+        <Loading massage="กำลังโหลดข้อมูล" />
       ) : (
         <div className="block w-full h-screen bg-white space-y-8 md:space-y-12">
           <div className="flex flex-col items-center bg-gradient-to-r from-sky-500 to-indigo-500 shadow-xl h-40 md:h-48 lg:h-64 rounded-b-[50px]">

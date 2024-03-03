@@ -20,7 +20,7 @@ function QuizGameViewModel() {
   const { API_URL, GAMES, QUIZ } = configBackend;
 
   const [count, setCount] = useState<number>(0);
-  const [questions, setQuestions] = useState<Question>();
+  const [questions, setQuestions] = useState<Question | undefined>(undefined);
 
   const [imgNormal, setImgNormal] = useState<string[]>([]);
   const [ansUser, setAnsUser] = useState<string[]>([]);

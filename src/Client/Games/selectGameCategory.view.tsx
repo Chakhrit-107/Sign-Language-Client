@@ -1,7 +1,7 @@
 import React from "react";
 import SelectGameCategoryViewModel from "./selectGameCategory.viewmodel";
 import { Link } from "react-router-dom";
-import { Oval } from "react-loading-icons";
+import Loading from "../../components/loading";
 
 function SelectGameCategory() {
   const { categories, selectGame, vMinimum, gameName } =
@@ -10,16 +10,7 @@ function SelectGameCategory() {
   return (
     <>
       {categories === undefined ? (
-        <div className="flex flex-col md:space-y-10 items-center justify-center h-screen bg-white">
-          <Oval
-            stroke="blue"
-            strokeOpacity={0.5}
-            speed={1}
-            strokeWidth={5}
-            className="w-1/6 h-1/6"
-          />
-          <h1 className="text-gray-600 text-xl md:text-3xl">กำลังโหลดข้อมูล</h1>
-        </div>
+        <Loading massage="กำลังโหลดข้อมูล" />
       ) : (
         <div className="px-8 md:px-20 lg:px-24  space-y-6 md:space-y-12">
           <div className="flex flex-col items-center md:py-4">
