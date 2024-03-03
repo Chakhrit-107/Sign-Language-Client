@@ -1,8 +1,9 @@
-const api_url = "https://sign-language-server.onrender.com";
-const api_urlX = "http://13.211.176.140:8080";
+import url from "./env"
+
+const {api_url,api_urlX} = url;
 
 export default {
-  API_URL: api_url,
+  API_URL: api_urlX || process.env.api_urlX,
   AUTHENTICATION: "authentication",
   LOGIN: "login",
   REGISTER: "register",
