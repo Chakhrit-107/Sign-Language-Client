@@ -1,9 +1,9 @@
-import url from "./env"
+//import url from "./env"
 
-const {api_url,api_urlX} = url;
+//const {api_url,api_urlX} = url;
 
 export default {
-  API_URL: api_urlX || process.env.api_urlX,
+  API_URL: process.env.api_urlX,
   AUTHENTICATION: "authentication",
   LOGIN: "login",
   REGISTER: "register",
