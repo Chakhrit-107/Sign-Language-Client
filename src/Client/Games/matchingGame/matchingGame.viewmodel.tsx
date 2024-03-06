@@ -3,24 +3,9 @@ import configBackend from "../../../config/config.backend";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import SummaryScore from "../../../models/summaryScore.model";
+import { Positions, vMatching } from "./schema/matchingGame.schema";
 
-interface Positions {
-  top: number;
-  left: number;
-}
-
-interface ImagesProp {
-  image: string;
-  nameCorrect: string;
-  id: number;
-}
-
-interface NameProp {
-  name: string;
-  id: number;
-}
-
-type MatchingGameType = [ImagesProp[], NameProp[]];
+type MatchingGameType = [vMatching[], vMatching[]];
 
 function MatchingGameViewModel() {
   const { API_URL, GAMES, MATCHING } = configBackend;
@@ -50,13 +35,13 @@ function MatchingGameViewModel() {
   const [line, setLine] = useState<string>("");
 
   const [vocabularies, setVocabularies] = useState<MatchingGameType>();
-  const [imagesQuiz, setImagesQuiz] = useState<ImagesProp[] | undefined>(
+  const [imagesQuiz, setImagesQuiz] = useState<vMatching[] | undefined>(
     undefined
   );
-  const [vAnswer, setVAnswer] = useState<NameProp[]>([]);
+  const [vAnswer, setVAnswer] = useState<vMatching[]>([]);
 
-  const [ansCorrect, setAnsCorrect] = useState<string[]>([]);
-  const [ansUser, setAnsUser] = useState<string[]>([]);
+  const [imgSelected, setImgSelected] = useState<vMatching[]>([]);
+  const [textSelected, setTextSelected] = useState<vMatching[]>([]);
 
   const [showScore, setShowScore] = useState<boolean>(false);
   const [summaries, setSummaries] = useState<SummaryScore[]>([]);
@@ -79,11 +64,11 @@ function MatchingGameViewModel() {
     getVocabularies();
   }, []);
 
-  // separate vocabularies to image and name
+  // separate vocabularies to image and text block
   useEffect(() => {
     if (vocabularies) {
-      setImagesQuiz(vocabularies?.[0]);
-      setVAnswer(vocabularies[1]);
+      setImagesQuiz(vocabularies?.[0]); // set image block
+      setVAnswer(vocabularies[1]); // set vocabularies block
     }
   }, [vocabularies]);
 
@@ -108,6 +93,7 @@ function MatchingGameViewModel() {
     }
   }, [screenWidth, screenWidth]);
 
+  // Get line connect  block
   useEffect(() => {
     const getLineConnectBlock = async () => {
       try {
@@ -131,16 +117,23 @@ function MatchingGameViewModel() {
   // Check Answer
   useEffect(() => {
     if (imagesQuiz) {
-      const updatedSummary = imagesQuiz.map((ans, index) => ({
-        img: ans.image,
-        correctAns: ans.nameCorrect,
-        userAns: ansUser[index],
-        status: ansUser[index] === ansCorrect[index] ? "ถูก" : "ผิด",
+      const updateSummary = imagesQuiz.map((_, index) => ({
+        img: imgSelected[index]?.image,
+        correctAns: imgSelected[index]?.name,
+        userAns:
+          imgSelected[index] == textSelected[index]
+            ? imgSelected[index]?.name
+            : textSelected[index]?.name,
+        status:
+          imgSelected[index]?.name == textSelected[index]?.name ? "ถูก" : "ผิด",
       }));
 
-      setSummaries(updatedSummary);
+      setSummaries(updateSummary);
     }
-  }, [ansCorrect, ansUser]);
+  }, [imgSelected, textSelected]);
+
+  console.log(imgSelected, 1);
+  console.log(textSelected, 2);
 
   // Show Model
   useEffect(() => {
@@ -165,7 +158,7 @@ function MatchingGameViewModel() {
     }
   };
 
-  // Set position Question
+  // Set position Images block
   const settingPositionQuestion = (
     divID: string,
     idStatus: number,
@@ -210,19 +203,22 @@ function MatchingGameViewModel() {
     userSelectQuestion(question, idStatus);
   };
 
-  // Set User select Question
+  // Set User select Images block
   const userSelectQuestion = (answer: string, idStatus: number) => {
     if (statusImg[idStatus]) {
-      const quizFind = ansCorrect.find((ansCor) => ansCor == answer);
-      const quizFilter = ansCorrect.filter((ansCor) => ansCor !== quizFind);
+      const quizFind = imgSelected.find((ansCor) => ansCor.name == answer);
+      const quizFilter = imgSelected.filter((ansCor) => ansCor !== quizFind);
 
-      setAnsCorrect(quizFilter);
+      setImgSelected(quizFilter);
     } else {
-      setAnsCorrect((prevCN) => [...prevCN, answer]);
+      const imgSelect = imagesQuiz?.find((quiz) => quiz.name == answer);
+      if (imgSelect) {
+        setImgSelected((prevSelected) => [...prevSelected, imgSelect]);
+      }
     }
   };
 
-  // Set position Answer
+  // Set position Answers block
   const settingPositionAnswer = (
     divID: string,
     idStatus: number,
@@ -267,15 +263,18 @@ function MatchingGameViewModel() {
     userSelectAnswer(answer, idStatus);
   };
 
-  // Set User select Answer
+  // Set User select Answers block
   const userSelectAnswer = (answer: string, idStatus: number) => {
     if (statusAns[idStatus]) {
-      const answerFind = ansUser.find((ans) => ans == answer);
-      const answerFilter = ansUser.filter((ans) => ans !== answerFind);
+      const answerFind = textSelected.find((ans) => ans.name == answer);
+      const answerFilter = textSelected.filter((ans) => ans !== answerFind);
 
-      setAnsUser(answerFilter);
+      setTextSelected(answerFilter);
     } else {
-      setAnsUser((prevCN) => [...prevCN, answer]);
+      const textSelect = vAnswer?.find((text) => text.name == answer);
+      if (textSelect) {
+        setTextSelected((prevSelected) => [...prevSelected, textSelect]);
+      }
     }
   };
 

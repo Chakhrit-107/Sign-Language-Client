@@ -47,7 +47,7 @@ function MatchingGame() {
             <div
               id="divQ1"
               onClick={() =>
-                settingPositionQuestion("divQ1", 0, imagesQuiz[0].nameCorrect)
+                settingPositionQuestion("divQ1", 0, imagesQuiz[0].name)
               }
               className={`${
                 statusImg[0]
@@ -65,7 +65,7 @@ function MatchingGame() {
             <div
               id="divQ2"
               onClick={() =>
-                settingPositionQuestion("divQ2", 1, imagesQuiz[1].nameCorrect)
+                settingPositionQuestion("divQ2", 1, imagesQuiz[1].name)
               }
               className={`${
                 statusImg[1]
@@ -83,7 +83,7 @@ function MatchingGame() {
             <div
               id="divQ3"
               onClick={() =>
-                settingPositionQuestion("divQ3", 2, imagesQuiz[2].nameCorrect)
+                settingPositionQuestion("divQ3", 2, imagesQuiz[2].name)
               }
               className={`${
                 statusImg[2]
@@ -101,7 +101,7 @@ function MatchingGame() {
             <div
               id="divQ4"
               onClick={() =>
-                settingPositionQuestion("divQ4", 3, imagesQuiz[3].nameCorrect)
+                settingPositionQuestion("divQ4", 3, imagesQuiz[3].name)
               }
               className={`${
                 statusImg[3]
