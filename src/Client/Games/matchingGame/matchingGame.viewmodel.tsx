@@ -132,9 +132,6 @@ function MatchingGameViewModel() {
     }
   }, [imgSelected, textSelected]);
 
-  console.log(imgSelected, 1);
-  console.log(textSelected, 2);
-
   // Show Model
   useEffect(() => {
     if (
