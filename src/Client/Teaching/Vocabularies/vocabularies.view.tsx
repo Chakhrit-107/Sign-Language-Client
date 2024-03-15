@@ -44,6 +44,9 @@ function Vocabularies() {
             <img src={categoryImgSignLanguage} className="w-full rounded-3xl" />
           </div>
         </div>
+        <h1 className="w-full flex justify-center text-gray-600 text-lg md:text-2xl">
+          เลือกคำศัพท์ที่ต้องการเรียน
+        </h1>
         <div className="px-8 md:px-20 lg:px-24">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-y-4 gap-x-4 md:gap-y-8 lg:gap-x-8">
             {/* add menu for admin */}

@@ -148,7 +148,7 @@ function AddVocabularyModal({ categoryName, closeCreate }: AddVocabularyProp) {
     <>
       <div className="flex flex-col items-center w-full bg-white gap-y-14">
         <div className="flex w-full justify-between">
-          <span className="text-gray-800">หมวดหมู่ :</span>
+          <span className="text-gray-800">คำศัพท์ :</span>
           <input
             type="text"
             onChange={(e) => setVocabulary(e.target.value)}

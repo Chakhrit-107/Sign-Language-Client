@@ -58,6 +58,9 @@ function Home() {
               )}
             </div>
           </div>
+          <h1 className="w-full flex justify-center text-gray-600 text-lg md:text-2xl">
+            เลือกหมวดหมู่ที่ต้องการเรียน
+          </h1>
           <div className="px-8 md:px-20 lg:px-24">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-y-4 gap-x-4 md:gap-y-8 lg:gap-x-8">
               {/* Add category menu */}
@@ -104,7 +107,7 @@ function Home() {
                       </div>
                     </Link>
 
-                    {/* Edit and delete category menu */}
+                    {/* Edit and delete category button menu */}
                     {authentication ? (
                       <div className="flex items-center justify-center space-x-6 pt-2 border-t-[1px] shadow-inner w-full">
                         <EditIcon

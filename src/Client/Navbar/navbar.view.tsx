@@ -97,7 +97,7 @@ function Navbar() {
               <div className="flex items-center">
                 <SignLanguageIcon className="text-white text-2xl" />
                 <h1 className="ml-4 text-white text-2xl md:text-3xl font-bold">
-                  Sign Language
+                  เรียนรู้ภาษามือ
                 </h1>
               </div>
             </Link>
@@ -157,7 +157,7 @@ function Navbar() {
                       selectedMenu === "login" ? "text-blue-500" : "text-white"
                     }`}
                   >
-                    เข้าสู่ระบบ
+                    ผู้ดูแลระบบ
                   </h1>
                   <LoginIcon className="text-white mt-1" />
                 </Link>
@@ -225,7 +225,7 @@ function Navbar() {
                 onClick={toggleMenu}
               >
                 <LoginIcon className="text-white mt-1" />
-                <span className="ml-4">เข้าสู่ระบบ</span>
+                <span className="ml-4">ผู้ดูแลระบบ</span>
               </Link>
             )}
           </div>
